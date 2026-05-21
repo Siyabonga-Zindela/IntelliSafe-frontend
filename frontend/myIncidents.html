@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Incidents</title>
+    <link rel="stylesheet" href="css\employeeDashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <div class="side-bar">
+        <div class="wrap-internal">
+          <div class="logo-wrapper">
+            <img src="assets/logo.png" alt="Logo" />
+          </div>
+          <div class="sidebar-btns-wrapper">
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-dashboard.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text active">
+                <a href="employeeDashboard.html">Dashboard</a>
+              </div>
+            </div>
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-report.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="reportIncident.html">Report Incident</a>
+              </div>
+            </div>
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-repo.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="myIncidents.html">My Incidents</a>
+              </div>
+            </div>
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-logout.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="home.html">Sign Out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-sidebar">
+          <hr />
+          <div class="logged-employee-wrapper">
+            <div class="initial"><p>S</p></div>
+            <div class="name">
+              <p class="employee-footer">Siyabonga Zindela</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-content">
+        <div class="dashboard-header">
+          <div class="left-header">
+            <h2>My Incidents</h2>
+            <p class="status-sentence">
+              Track the status of safety incidents you have reported.
+            </p>
+          </div>
+        </div>
+
+        <div class="my-recent-reports-wrapper">
+          <div class="my-recent-reports-header">
+            <div class="my-recent-reports-header-left">
+              <h3>My Recent Reports</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="js/main.js"></script>
+  </body>
+</html>

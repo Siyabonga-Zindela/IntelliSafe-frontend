@@ -1,0 +1,328 @@
+body{
+    margin: 0%;
+    font-family: 'Montserrat', sans-serif;
+}
+.dashboard-wrapper{
+    display: grid;
+    grid-template-columns: 260px auto;
+    grid-template-rows: auto;
+    height: auto;
+    grid-template-areas: "side-bar dashboard-content"
+                         "side-bar dashboard-content";
+}
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(11, 38, 68);
+    height: 100vh;
+    color: white;
+    justify-content: space-between;
+}
+.side-bar img{
+    height: 150px;
+    width: 200px;
+    
+}
+.sidebar-btns{
+    display: flex;
+    gap: 0.6rem;
+    border-radius: 5px;
+    width: 90%;
+    padding-left: 20px;
+}
+.sidebar-btns a{
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bolder;
+    color: white;
+}
+.logged-employee-wrapper{
+    display: flex;
+    gap: 10px;
+}
+.initial{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: grey;
+    color: black;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+.sidebar-btns img{
+    height: 25px;
+    width: 25px;
+}
+.sidebar-btns-wrapper{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.sidebar-btns:focus {
+    background-color: rgb(18, 64, 116);
+    color: white;
+}
+.bottom-sidebar{
+    padding-left: 20px;
+}
+.logo-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 110px;
+    background-color: rgba(178, 182, 187, 0.678);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: flex;
+}
+.dashboard-content{
+    padding: 30px;
+}
+.dashboard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+h2{
+    font-size: 2rem;
+    margin-bottom: 1px;
+    
+}
+.dashboard-header .right-header{
+    display: flex;
+    background-color: orangered;
+    border-radius: 15px;
+    padding: 5px;
+    height: 40px;
+}
+.report-new{
+    color: white;
+    text-decoration: none;
+}
+.status-sentence{
+    color: grey;
+}
+.right-text{
+    display: flex;
+    align-items: center;
+}
+.dashboard-cards{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+.card{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 5px;
+    gap: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.185);
+
+}
+.card-number{
+    font-size: 1.9rem;
+    margin: 0;
+}
+.left-icon-wrapper1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 65px;
+    width: 65px;
+    background-color: rgb(219, 234, 255);
+}
+.left-icon-wrapper2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 65px;
+    width: 65px;
+    background-color: rgb(255, 240, 234);
+}
+.left-icon-wrapper3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    border-radius: 5px;
+    height: 65px;
+    width: 65px;
+    background-color: rgb(229, 246, 236);
+}
+.left-icon-wrapper1 img, .left-icon-wrapper2 img, .left-icon-wrapper3 img{
+    height: 48px;
+    width: 48px;
+}
+.my-recent-reports-wrapper{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 5px;
+}
+.my-recent-reports-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.logged-employee-wrapper{
+    margin-bottom: 10px;
+}
+hr{
+    width: 70%;
+}
+
+/*********MY INCIDETS STYLING*******************/
+.form-cards-wrapper{
+    display: flex;
+    gap: 10px;
+}
+.form-caution{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 240, 234);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.incident-form-wraper{
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.185);
+    padding: 10px;
+    border-radius: 10px;
+}
+form input{
+    font-size: 0.8rem;
+    padding: 5px;
+    border-radius: 5px;
+}
+.form-caution img{
+    height: 65px;
+    width: 65px;
+}
+.card-form{
+    display: flex;
+    flex: 1;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.card-form:hover{
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.185);
+
+}
+button{
+    background-color: rgba(139, 1, 1, 0.986);
+    border-style: none;
+    height: 1.7rem;
+    border-radius: 15px;
+    color: white;
+}
+.location-category-wrapper{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 5px;
+}
+.location-category-wrapper input{
+    width: 100%;
+}
+.report-info-text{
+    margin-top: 0px;
+    font-size: 0.7rem;
+    color: grey;
+}
+
+/*****************ADMIN STYLES****************/
+
+.admin-recent-reports-table table {
+    width: 100%;
+    table-layout: fixed;
+}
+.admin-recent-reports-table th{
+    background-color: grey;
+}
+.admin-recent-reports-table td, .admin-recent-reports-table th {
+    width: 25%;
+}
+.my-recent-reports-wrapper{
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.185);
+}
+
+/****************UPDATE INCIDENT STYLES**************/
+
+.incident-details-grid{
+    display: grid;
+    grid-template-columns: 2fr 0.7fr;
+    grid-template-rows: 0.1fr 2fr;
+    grid-template-areas: "description-card update-status-card"
+                         "details-card-wrapper update-status-card";
+    gap: 1rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.185);
+    padding: 10px;
+    height: max-content;
+    border-radius: 10px;
+    height: 70vh;
+}
+.description-card{
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 5px;
+    grid-area: description-card;
+}
+.details-card-wrapper{
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 5px;
+    grid-area: details-card-wrapper;
+}
+.update-status-card{
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 5px;
+    grid-area: update-status-card;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    gap: 1.5rem;
+}
+.header-update{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.incident-details-grid p{
+    font-size: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.btn-goback-to-all-incidents{
+    text-decoration: none;
+    background-color: rgba(128, 128, 128, 0.445);
+    padding: 7px;
+    border-radius: 10px;
+    color: black;
+}
+.btn-goback-to-all-incidents:hover{
+    color: white;
+}

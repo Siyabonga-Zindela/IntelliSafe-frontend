@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update incident</title>
+    <link rel="stylesheet" href="css\employeeDashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <div class="side-bar">
+        <div class="wrap-internal">
+          <div class="logo-wrapper">
+            <img src="assets/logo.png" alt="Logo" />
+          </div>
+          <div class="sidebar-btns-wrapper">
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-dashboard.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text active">
+                <a href="adminDashboard.html">Dashboard</a>
+              </div>
+            </div>
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-report.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="allIncidents.html">All Incidents</a>
+              </div>
+            </div>
+
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-logout.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="home.html">Sign Out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-sidebar">
+          <hr />
+          <div class="logged-employee-wrapper">
+            <div class="initial"><p>S</p></div>
+            <div class="name">
+              <p class="employee-footer">Siyabonga Zindela</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-content">
+        <a href="allIncidents.html" class="btn-goback-to-all-incidents"
+          >◀ Go back to all incidents</a
+        >
+        <h2>Chemical spill</h2>
+        <div class="dashboard-header">
+          <div class="header-update">
+            <p class="status-sentence">
+              Incident Code: <span id="incident-code">INC-226</span>
+            </p>
+          </div>
+        </div>
+        <div class="incident-details-grid">
+          <div class="description-card">
+            <h4>Description</h4>
+            <p>They broke the tank station.</p>
+          </div>
+          <div class="details-card-wrapper">
+            <h4>Description</h4>
+            <div class="details-cards-container">
+              <div class="left-details">
+                <div class="details-card"></div>
+                <div class="details-card"></div>
+              </div>
+              <div class="right-details">
+                <div class="details-card"></div>
+                <div class="details-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="update-status-card">
+            <h4>Description</h4>
+
+            <form action="" method="post">
+              <label for="Status">Status</label>
+              <select name="Status" id="update-status-dropdown">
+                <option value="Received">Received</option>
+                <option value="Received">Investigating</option>
+                <option value="Received">Resolved</option>
+              </select>
+              <label for="Update note">Update Note (Optional)</label>
+              <textarea
+                name="update-note-message"
+                id="update-note-message"
+                rows="5"
+                placeholder="Everything is fixed..."
+              >
+              </textarea>
+              <button type="submit">Save Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="js/main.js"></script>
+  </body>
+</html>

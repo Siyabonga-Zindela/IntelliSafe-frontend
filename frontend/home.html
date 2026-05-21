@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IntelliSafe</title>
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="home-page">
+      <div class="home-left">
+        <img src="assets/logo.png" alt="logo" />
+      </div>
+
+      <div class="home-right">
+        <div class="home-image">
+          <img src="assets/logo.png" alt="logo" />
+          <p>Industrial Incident & Safety Reporting System</p>
+        </div>
+
+        <div class="home-form-wrapper">
+          <form id="login-form">
+            <label for="emailAddress">Email address</label>
+
+            <input
+              type="email"
+              name="emailAddress"
+              id="emailAddress"
+              placeholder="you@intellisafety.com"
+            />
+            <br />
+            <br />
+            <label for="password">Password</label>
+
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+            />
+            <br />
+            <br />
+            <br />
+            <a href="employeeDashboard.html">
+              <button>Sign in</button>
+            </a>
+            <hr />
+
+            <p>--------------- Demo Access ---------------</p>
+            <div class="demo-btns-wrapper">
+              <a href="employeeDashboard.html" class="btnDemo"
+                >Sign in as Employee</a
+              >
+              <br />
+              <br />
+              <a href="adminDashboard.html" class="btnDemo">
+                Sign in as Safety Officer
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script defer src="js/main.js"></script>
+  </body>
+</html>

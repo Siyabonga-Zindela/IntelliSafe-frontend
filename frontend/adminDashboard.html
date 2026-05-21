@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css\employeeDashboard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <div class="side-bar">
+        <div class="wrap-internal">
+          <div class="logo-wrapper">
+            <img src="assets/logo.png" alt="Logo" />
+          </div>
+          <div class="sidebar-btns-wrapper">
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-dashboard.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text active">
+                <a href="adminDashboard.html">Dashboard</a>
+              </div>
+            </div>
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-report.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="allIncidents.html">All Incidents</a>
+              </div>
+            </div>
+
+            <div class="sidebar-btns">
+              <div class="btn-icon">
+                <img src="assets/icons-logout.png" alt="Dashboard icon" />
+              </div>
+              <div class="btn-text">
+                <a href="home.html">Sign Out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-sidebar">
+          <hr />
+          <div class="logged-employee-wrapper">
+            <div class="initial"><p>S</p></div>
+            <div class="name">
+              <p class="employee-footer">Siyabonga Zindela</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-content">
+        <div class="dashboard-header">
+          <div class="left-header">
+            <h2>
+              Welcome back, <span id="loggedAdmin">Siyabonga Zindela</span>
+            </h2>
+            <p class="status-sentence">
+              Monitor and manage facility safety incidents.
+            </p>
+          </div>
+        </div>
+        <div class="dashboard-cards">
+          <div class="card">
+            <div class="left-icon-wrapper1">
+              <img src="assets/icons-file.png" alt="Total Reports" />
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <h4>Total Incidents</h4>
+              </div>
+              <div class="card-number-wrapper">
+                <p class="card-number">4</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="left-icon-wrapper2">
+              <img src="assets/icons-hazard.png" alt="" />
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <h4>Active Critical</h4>
+              </div>
+              <div class="card-number-wrapper">
+                <p class="card-number">1</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="left-icon-wrapper2">
+              <img src="assets/icons-hazard.png" alt="" />
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <h4>Open</h4>
+              </div>
+              <div class="card-number-wrapper">
+                <p class="card-number">2</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="left-icon-wrapper3">
+              <img src="assets/icons-check.png" alt="" />
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <h4>Resolved</h4>
+              </div>
+              <div class="card-number-wrapper">
+                <p class="card-number">1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="my-recent-reports-wrapper">
+          <div class="my-recent-reports-header">
+            <div class="my-recent-reports-header-left">
+              <h3>Recent Incidents</h3>
+            </div>
+            <div class="my-recent-reports-header-right">
+              <a href="allIncidents.html" class="btn-goback-to-all-incidents"
+                >View All ▷</a
+              >
+            </div>
+          </div>
+          <table
+            class="admin-recent-reports-table"
+            id="admin-table-recent-incidents"
+          >
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Reporter</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script defer src="js/main.js"></script>
+  </body>
+</html>
