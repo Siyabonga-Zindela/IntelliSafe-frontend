@@ -1,61 +1,69 @@
-const BASE_URL = "http://localhost:8080";
+const backendURL = "http://localhost:8090";
 
 
 const loginForm = document.getElementById("login-form");
 
 if (loginForm) {
+
     loginForm.addEventListener("submit", function (e) {
         e.preventDefault();
-
         const email = document.getElementById("emailAddress").value;
         const password = document.getElementById("password").value;
 
-        fetch(BASE_URL + "/admin/1")
-            .then(res => res.json())
-            .then(admin => {
-
-                if (email === admin.emailAddress && password === admin.password) {
-                    localStorage.setItem("user", JSON.stringify(admin));
-                    window.location.href = "adminDashboard.html";
-                } else {
-                    alert("Invalid login");
-                }
-
+        fetch(backendURL + "/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailAddress: email,
+                password: password
             })
-            .catch(err => {
-                console.log(err);
-                alert("Server error");
-            });
+        })
+        .then(res => res.json())
+        .then(user => {
+            localStorage.setItem("user", JSON.stringify(user));
+
+            if (user.role === "ADMIN") {
+                window.location.href = "adminDashboard.html";
+            } else {
+                window.location.href = "employeeDashboard.html";
+            }
+
+        })
+
+        .catch(error => {
+            console.log(error);
+            alert("Invalid Login");
+        });
     });
 }
 
+const reportForm = document.getElementById("report-form");
 
-
-const reportForm = document.querySelector("form");
-
-if (reportForm && document.getElementById("detailed-description")) {
+if (reportForm) {
 
     reportForm.addEventListener("submit", function (e) {
+
         e.preventDefault();
 
-        const title = document.querySelector("input[type='text']").value;
-        const location = document.getElementById("location").value;
-        const description = document.getElementById("detailed-description").value;
+        const loggedUser = JSON.parse(localStorage.getItem("user"));
 
-        const selected = document.querySelector("input[type='radio']:checked");
-        const severity = selected ? selected.value : "low";
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const severity = document.getElementById("severity").value;
+        const location = document.getElementById("location").value;
 
         const incident = {
             title: title,
-            reporter: 1,
-            severity: severity,
-            status: "Open",
-            date: new Date(),
             incidentDescription: description,
-            incidentCategory: location
+            severity: severity,
+            incidentCategory: location,
+            status: "Open",
+            reporter: loggedUser.userId
         };
 
-        fetch(BASE_URL + "/incidents/create", {
+        fetch(backendURL + "/incidents/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -63,143 +71,190 @@ if (reportForm && document.getElementById("detailed-description")) {
             body: JSON.stringify(incident)
         })
         .then(res => res.json())
-        .then(() => {
-            alert("Incident submitted");
-            window.location.href = "employeeDashboard.html";
+        .then(data => {
+            alert("Incident Submitted");
+            window.location.href = "myIncidents.html";
         })
-        .catch(err => {
-            console.log(err);
-            alert("Failed to submit");
+
+        .catch(error => {
+            console.log(error);
+            alert("Failed To Submit Incident");
         });
+
     });
+
 }
 
-
-
-const adminTable = document.getElementById("admin-table-recent-incidents");
+const adminTable = document.getElementById("admin-table");
 
 if (adminTable) {
 
-    fetch(BASE_URL + "/incidents/all")
-        .then(res => res.json())
-        .then(data => {
+    fetch(backendURL + "/incidents/all")
 
-            let total = data.length;
-            let critical = 0;
-            let open = 0;
-            let resolved = 0;
+    .then(res => res.json())
+    .then(data => {
+        let total = data.length;
+        let open = 0;
+        let resolved = 0;
+        let critical = 0;
 
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].severity === "critical") critical++;
-                if (data[i].status === "Open") open++;
-                if (data[i].status === "Resolved") resolved++;
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].status === "Open") {
+                open++;
             }
-
-            let cards = document.getElementsByClassName("card-number");
-
-            if (cards.length >= 4) {
-                cards[0].innerText = total;
-                cards[1].innerText = critical;
-                cards[2].innerText = open;
-                cards[3].innerText = resolved;
+            if (data[i].status === "Resolved") {
+                resolved++;
             }
+            if (data[i].severity === "Critical") {
+                critical++;
+            }
+        }
 
-            adminTable.innerHTML = `
+        const cards = document.getElementsByClassName("card-number");
+
+        cards[0].innerText = total;
+        cards[1].innerText = open;
+        cards[2].innerText = critical;
+        cards[3].innerText = resolved;
+
+        adminTable.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Location</th>
+            </tr>
+        `;
+
+        for (let i = 0; i < data.length; i++) {
+
+            adminTable.innerHTML += `
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Reporter</th>
-                    <th>Severity</th>
-                    <th>Status</th>
-                    <th>Date</th>
+                    <td>${data[i].incidentId}</td>
+                    <td>${data[i].title}</td>
+                    <td>${data[i].severity}</td>
+                    <td>${data[i].status}</td>
+                    <td>${data[i].incidentCategory}</td>
                 </tr>
             `;
 
-            for (let i = 0; i < data.length; i++) {
-                adminTable.innerHTML += `
-                    <tr>
-                        <td>${data[i].incidentId}</td>
-                        <td>${data[i].title}</td>
-                        <td>${data[i].reporter}</td>
-                        <td>${data[i].severity}</td>
-                        <td>${data[i].status}</td>
-                        <td>${data[i].date}</td>
-                    </tr>
-                `;
-            }
+        }
 
-        });
+    });
+
 }
 
+const allIncidentsTable = document.getElementById("all-incidents-table");
 
+if (allIncidentsTable) {
+    fetch(backendURL + "/incidents/all")
+    .then(res => res.json())
+    .then(data => {
+        allIncidentsTable.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Reporter</th>
+            </tr>
+        `;
 
-const allTable = document.getElementById("admin-table-all-incidents");
-
-if (allTable) {
-
-    fetch(BASE_URL + "/incidents/all")
-        .then(res => res.json())
-        .then(data => {
-
-            allTable.innerHTML = `
+        for (let i = 0; i < data.length; i++) {
+            allIncidentsTable.innerHTML += `
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Reporter</th>
-                    <th>Severity</th>
-                    <th>Status</th>
-                    <th>Date</th>
+                    <td>${data[i].incidentId}</td>
+                    <td>${data[i].title}</td>
+                    <td>${data[i].severity}</td>
+                    <td>${data[i].status}</td>
+                    <td>${data[i].reporter}</td>
+                </tr>
+            `;
+        }
+    });
+}
+
+const employeeTable = document.getElementById("employee-table");
+
+if (employeeTable) {
+
+    const loggedUser = JSON.parse(localStorage.getItem("user"));
+    fetch(backendURL + "/incidents/all")
+    .then(res => res.json())
+    .then(data => {
+        let myIncidents = [];
+
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].reporter == loggedUser.userId) {
+
+                myIncidents.push(data[i]);
+
+            }
+        }
+
+        let open = 0;
+        let resolved = 0;
+
+        for (let i = 0; i < myIncidents.length; i++) {
+            if (myIncidents[i].status === "Resolved") {
+                resolved++;
+            } else {
+                open++;
+            }
+
+        }
+
+        const cards = document.getElementsByClassName("card-number");
+
+        cards[0].innerText = myIncidents.length;
+        cards[1].innerText = open;
+        cards[2].innerText = resolved;
+
+        employeeTable.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Severity</th>
+            </tr>
+        `;
+
+        for (let i = 0; i < myIncidents.length; i++) {
+
+            employeeTable.innerHTML += `
+                <tr>
+                    <td>${myIncidents[i].incidentId}</td>
+                    <td>${myIncidents[i].title}</td>
+                    <td>${myIncidents[i].status}</td>
+                    <td>${myIncidents[i].severity}</td>
                 </tr>
             `;
 
-            for (let i = 0; i < data.length; i++) {
-                allTable.innerHTML += `
-                    <tr>
-                        <td>${data[i].incidentId}</td>
-                        <td>${data[i].title}</td>
-                        <td>${data[i].reporter}</td>
-                        <td>${data[i].severity}</td>
-                        <td>${data[i].status}</td>
-                        <td>${data[i].date}</td>
-                    </tr>
-                `;
-            }
+        }
 
-        });
+    });
+
 }
 
+const loggedUser = JSON.parse(localStorage.getItem("user"));
 
+if (loggedUser) {
+    if (loggedUser.role === "EMPLOYEE") {
+        const adminPages = document.getElementsByClassName("admin-only");
 
-const employeeCards = document.getElementsByClassName("card-number");
+        for (let i = 0; i < adminPages.length; i++) {
+            adminPages[i].style.display = "none";
+        }
+    }
 
-if (employeeCards.length > 0 && document.getElementById("loggedEmloyee")) {
+    if (loggedUser.role === "ADMIN") {
+        const employeePages = document.getElementsByClassName("employee-only");
 
-    fetch(BASE_URL + "/incidents/all")
-        .then(res => res.json())
-        .then(data => {
+        for (let i = 0; i < employeePages.length; i++) {
+            employeePages[i].style.display = "none";
 
-            let myIncidents = [];
-
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].reporter == 1) {
-                    myIncidents.push(data[i]);
-                }
-            }
-
-            let open = 0;
-            let resolved = 0;
-
-            for (let i = 0; i < myIncidents.length; i++) {
-                if (myIncidents[i].status === "Resolved") {
-                    resolved++;
-                } else {
-                    open++;
-                }
-            }
-
-            employeeCards[0].innerText = myIncidents.length;
-            employeeCards[1].innerText = open;
-            employeeCards[2].innerText = resolved;
-
-        });
+        }
+    }
 }
